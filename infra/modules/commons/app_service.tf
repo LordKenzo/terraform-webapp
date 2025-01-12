@@ -27,6 +27,7 @@ resource "azurerm_linux_web_app" "control_room_wa" {
     SOME_KEY                   = "some-value"
     DOCKER_REGISTRY_SERVER_URL = "https://${data.azurerm_container_registry.acr.login_server}"
     DOCKER_ENABLE_CI           = "true"
+    DOCKER_CUSTOM_IMAGE_NAME   = "${data.azurerm_container_registry.acr.login_server}/my-nextjs-app:latest"
   }
 
   site_config {
@@ -51,6 +52,7 @@ resource "azurerm_linux_web_app_slot" "staging" {
     SOME_KEY                   = "some-value"
     DOCKER_REGISTRY_SERVER_URL = "https://${data.azurerm_container_registry.acr.login_server}"
     DOCKER_ENABLE_CI           = "true"
+    DOCKER_CUSTOM_IMAGE_NAME   = "${data.azurerm_container_registry.acr.login_server}/my-nextjs-app:latest"
   }
 
   site_config {
@@ -58,3 +60,4 @@ resource "azurerm_linux_web_app_slot" "staging" {
 
   }
 }
+
