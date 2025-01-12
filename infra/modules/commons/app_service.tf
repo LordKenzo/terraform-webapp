@@ -22,8 +22,8 @@ resource "azurerm_linux_web_app" "control_room_wa" {
 
   app_settings = {
     WEBSITE_DNS_SERVER           = "168.63.129.16"
-    "WEBSITE_STARTUP_FILE"       = "pnpm start" # Comando di startup
-    "WEBSITES_PORT"              = 8000
+    "WEBSITE_STARTUP_FILE"       = "npm start" # Comando di startup
+    "WEBSITES_PORT"              = 3000
     "SOME_KEY"                   = "some-value"
     "DOCKER_REGISTRY_SERVER_URL" = "https://${data.azurerm_container_registry.acr.login_server}"
     "DOCKER_ENABLE_CI"           = "true"
@@ -52,8 +52,8 @@ resource "azurerm_linux_web_app_slot" "staging" {
 
   app_settings = {
     WEBSITE_DNS_SERVER           = "168.63.129.16"
-    "WEBSITE_STARTUP_FILE"       = "pnpm start" # Comando di startup
-    "WEBSITES_PORT"              = 8000
+    "WEBSITE_STARTUP_FILE"       = "npm start" # Comando di startup
+    "WEBSITES_PORT"              = 3000
     "SOME_KEY"                   = "some-value"
     "DOCKER_REGISTRY_SERVER_URL" = "https://${data.azurerm_container_registry.acr.login_server}"
     "DOCKER_ENABLE_CI"           = "true"
