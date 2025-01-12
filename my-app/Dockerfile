@@ -2,7 +2,7 @@
 FROM node:18-alpine AS builder
 
 # Installa pnpm
-RUN npm install -g pnpm
+# RUN npm install -g pnpm
 
 # Setta la working directory
 WORKDIR /app
@@ -16,7 +16,8 @@ COPY package.json ./
 COPY app/ ./app/
 
 # Installa le dipendenze e builda il progetto
-RUN npm install --frozen-lockfile
+# RUN npm install --frozen-lockfile
+RUN npm ci
 RUN npm run build
 
 # Stage 2: Runner
@@ -30,9 +31,11 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/app ./app
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/public ./public
 
 # Esponi la porta dell'applicazione
 EXPOSE 3000
 
 # Comando di avvio
-CMD ["node_modules/.bin/next", "start"]
+# CMD ["node_modules/.bin/next", "start"]
+CMD ["npm", "start"]
