@@ -1,9 +1,10 @@
 name: Deploy Docker Image to ACR
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main  # Triggera solo sui push nel branch principale
+      - main # Triggera solo sui push nel branch principale
 
 jobs:
   build_and_push:
