@@ -1,0 +1,36 @@
+name: Deploy Docker Image to ACR
+
+on:
+  push:
+    branches:
+      - main  # Triggera solo sui push nel branch principale
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout del codice
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # 2. Login to Azure
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # 3. Login to ACR
+      - name: Login to ACR
+        run: |
+          az acr login --name lorenzopcommonacr
+
+      # 4. Build dell'immagine Docker
+      - name: Build Docker Image
+        run: |
+          docker build -t lorenzopcommonacr.azurecr.io/my-nextjs-app:latest .
+
+      # 5. Push dell'immagine Docker su ACR
+      - name: Push Docker Image
+        run: |
+          docker push lorenzopcommonacr.azurecr.io/my-nextjs-app:latest
