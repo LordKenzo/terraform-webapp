@@ -14,6 +14,7 @@ COPY package.json ./
 #COPY package.json ./apps/web/
 #COPY apps/web/ ./apps/web/
 COPY app/ ./app/
+COPY public  ./public
 
 # Installa le dipendenze e builda il progetto
 # RUN npm install --frozen-lockfile
