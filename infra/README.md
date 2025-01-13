@@ -165,3 +165,13 @@ Il servizio ottiene un indirizzo IP privato nella tua Subnet.
 Molto sicuro, perché il servizio diventa parte della tua rete privata.
 Esempio pratico:
 Hai un database SQL. Con un Private Endpoint, quel database può essere raggiunto solo dalla tua VNet (e non da internet) e si comporta come se fosse fisicamente dentro la tua rete.
+
+# Container Registry
+
+az acr repository list --name <registry-name> --output table
+
+az acr repository list --name lorenzopcommonacr --output table
+
+az acr repository show-tags --name <registry-name> --repository <hello-world> --output table
+
+az acr repository show-tags --name lorenzopcommonacr --repository my-nextjs-app --output table

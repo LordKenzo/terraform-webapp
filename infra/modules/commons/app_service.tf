@@ -17,7 +17,8 @@ resource "azurerm_linux_web_app" "control_room_wa" {
   service_plan_id     = azurerm_service_plan.app_control_room.id
 
   identity {
-    type = "SystemAssigned"
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.my_acr_id.id]
   }
 
   app_settings = {
@@ -42,7 +43,8 @@ resource "azurerm_linux_web_app_slot" "staging" {
   app_service_id = azurerm_linux_web_app.control_room_wa.id
 
   identity {
-    type = "SystemAssigned"
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.my_acr_id.id]
   }
 
   app_settings = {
@@ -57,7 +59,6 @@ resource "azurerm_linux_web_app_slot" "staging" {
 
   site_config {
     always_on = true
-
   }
 }
 
