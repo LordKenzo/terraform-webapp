@@ -11,7 +11,7 @@ resource "azurerm_service_plan" "app_control_room" {
 }
 
 resource "azurerm_linux_web_app" "control_room_wa" {
-  name                = format("%s-control-room-wa", local.project)
+  name                = format("%s-cr-wa", local.project)
   resource_group_name = azurerm_virtual_network.vnet.resource_group_name
   location            = azurerm_virtual_network.vnet.location
   service_plan_id     = azurerm_service_plan.app_control_room.id
@@ -57,7 +57,13 @@ resource "azurerm_linux_web_app_slot" "staging" {
     DOCKER_CUSTOM_IMAGE_NAME   = "${data.azurerm_container_registry.acr.login_server}/my-nextjs-app:latest"
   }
 
+
+
   site_config {
+    # application_stack {
+    #   docker_image_name   = "my-nextjs-app:latest"
+    #   docker_registry_url = "lorenzopcommonacr.azurecr.io"
+    # }
     always_on = true
   }
 }

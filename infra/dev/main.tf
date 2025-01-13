@@ -11,9 +11,9 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "dev-lorenzo"
-    storage_account_name = "devlorenzosa"
-    container_name       = "azurermstatelorenzo"
+    resource_group_name  = "lorenzo-d-tf-rg"
+    storage_account_name = "lorenzodsa"
+    container_name       = "lorenzo-tfstate"
     key                  = "webapp.dev.tfstate"
   }
 }
