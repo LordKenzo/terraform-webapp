@@ -29,7 +29,9 @@ jobs:
       # 4. Build dell'immagine Docker
       - name: Build Docker Image
         run: |
-          docker build -t lorenzopcommonacr.azurecr.io/my-nextjs-app:latest ./my-turborepo/apps/web
+          COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose -f docker-compose.yml build -t lorenzopcommonacr.azurecr.io/my-nextjs-app:latest 
+
+      # docker build -t lorenzopcommonacr.azurecr.io/my-nextjs-app:latest ./my-turborepo/apps/web
 
       # 5. Push dell'immagine Docker su ACR
       - name: Push Docker Image
